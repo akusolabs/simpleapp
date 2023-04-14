@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+Flask
+email_validator
+Flask-MySQL
+Flask-WTF
+jinja2~=3.0.3
+Werkzeug~=2.0.0
+markupsafe==2.0.1
+elastic-apm[flask]
+=======
+flask
+newrelic
+
+>>>>>>> master
