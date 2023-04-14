@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 from time import strftime
 from flask import Flask, render_template, request, flash, json
 from forms import ContactForm
@@ -25,11 +24,6 @@ apm = ElasticAPM(app)
 
 mysql = MySQL()
 mysql.init_app(app)
-=======
-from flask import Flask, render_template, request, flash, jsonify
-
-app = Flask(__name__)      
->>>>>>> master
 
 @app.route('/')
 def home():
@@ -43,7 +37,6 @@ def about():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-<<<<<<< HEAD
   # # newrelic.agent.set_transaction_name("Contact")
   form = ContactForm()
 
@@ -56,10 +49,6 @@ def contact():
 
   elif request.method == 'GET':
     return render_template('contact.html', form=form)
-=======
-  newrelic.agent.set_transaction_name("Contact")
-  return render_template('contact.html')
->>>>>>> master
 
 @app.route('/showSignUp')
 def showSignUp():
@@ -68,7 +57,6 @@ def showSignUp():
  
 @app.route('/signUp',methods=['POST'])
 def signUp():
-<<<<<<< HEAD
     # newrelic.agent.set_transaction_name("SignUp")
     # read the posted values from the UI
     _name = request.form['inputName']
@@ -94,9 +82,6 @@ def signUp():
     _hashed_password = generate_password_hash(_password)
     cursor.callproc('./sp_createUser.sql',(_name,_email,_hashed_password))
 
-=======
-    newrelic.agent.set_transaction_name("SignUp")
->>>>>>> master
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8899)
