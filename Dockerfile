@@ -1,6 +1,5 @@
 FROM ubuntu:latest
-# RUN apt-get update -y
-# RUN apt-get install -y python3-dev python-pip
+
 RUN set -xe \
     && apt-get update \
     && apt-get install python3-pip -y
@@ -12,7 +11,7 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 EXPOSE 80
-ENTRYPOINT ["python3"]
-CMD ["simpleapp.py"]
+ENTRYPOINT FLASK_APP=app.py flask run --host=0.0.0.0 -p 8080
+
 
 

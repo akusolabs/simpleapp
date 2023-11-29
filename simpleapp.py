@@ -4,20 +4,19 @@ from flask import Flask, render_template, request, flash, json
 from forms import ContactForm
 from flaskext.mysql import MySQL
 # from werkzeug import generate_password_hash, check_password_hash
-from elasticapm.contrib.flask import ElasticAPM
 
 
 
 app = Flask(__name__)
 app.debug = True
-app.config['ELASTIC_APM'] = {
-  'SERVICE_NAME': 'simple-app',
-  'SECRET_TOKEN': '2WK2yZvHssER0ZrXJ2',
-  'SERVER_URL': 'https://a12c50be85804ff298e2bb5ce1770777.apm.us-central1.gcp.cloud.es.io:443',
-  'ENVIRONMENT': 'dev-gke',
-}
+# app.config['ELASTIC_APM'] = {
+#   'SERVICE_NAME': 'simple-app',
+#   'SECRET_TOKEN': '2WK2yZvHssER0ZrXJ2',
+#   'SERVER_URL': 'https://a12c50be85804ff298e2bb5ce1770777.apm.us-central1.gcp.cloud.es.io:443',
+#   'ENVIRONMENT': 'dev-gke',
+# }
 
-apm = ElasticAPM(app)
+#apm = ElasticAPM(app)
 
 
 #app.config.from_pyfile('config.py')

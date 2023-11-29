@@ -17,4 +17,9 @@ spec:
       - name: simpleapp
         image: mondosage/simpleapp:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        env:
+        - name: DEMO_GREETING
+          value: "Hello from the environment"
+        - name: DEMO_FAREWELL
+          value: "Such a sweet sorrow"
