@@ -23,19 +23,13 @@ spec:
     metadata:
       labels:
         app: sage-python-demo
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "true"
     spec:
       containers:
       - name: sage-python-demo-app
-        image: mondosage/simpleapp:v11.30.23
+        image: mondosage/simpleapp:v11.30.23.7
         ports:
         - containerPort: 8080
           name: service
-        env:
-        - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
-          value: "true"
-        - name: OTEL_EXPORTER_OTLP_PROTOCOL
-          value: grpc
-        - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: http://appdynamics-otel-collector-service.appdynamics.svc.cluster.local:4317
-        - name: OTEL_SERVICE_NAME
-          value: sage-python-demo
+       
