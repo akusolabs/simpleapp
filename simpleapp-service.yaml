@@ -1,31 +1,41 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: simpleapp-service
+  name: sage-python-demo
 spec:
   selector:
-    app: simpleapp
+    app: sage-python-demo
   ports:
-    - port: 80
-      targetPort: 8899
+    - port: 8080
+      targetPort: 8080
   type: LoadBalancer
 ---
-apiVersion: apps/v1 
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: simpleapp-deployment
+  name: sage-python-demo
 spec:
   selector:
     matchLabels:
-      app: simpleapp
-  replicas: 2
+      app: sage-python-demo
+  replicas: 3 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app: simpleapp
+        app: sage-python-demo
     spec:
       containers:
-      - name: simpleapp
-        image: mondosage/simpleapp:v2.1.amd
+      - name: sage-python-demo-app
+        image: mondosage/simpleapp:v11.30.23
         ports:
-        - containerPort: 8899
+        - containerPort: 8080
+          name: service
+        env:
+        - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+          value: "true"
+        - name: OTEL_EXPORTER_OTLP_PROTOCOL
+          value: grpc
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://appdynamics-otel-collector-service.appdynamics.svc.cluster.local:4317
+        - name: OTEL_SERVICE_NAME
+          value: sage-python-demo
