@@ -6,8 +6,8 @@ spec:
   selector:
     app: sage-python-demo
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8090
+      targetPort: 8090
   type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
@@ -28,8 +28,8 @@ spec:
     spec:
       containers:
       - name: sage-python-demo-app
-        image: mondosage/simpleapp:v11.30.23.7
+        image: mondosage/simpleapp:v12.1.23.1
         ports:
-        - containerPort: 8080
+        - containerPort: 8090
           name: service
        
